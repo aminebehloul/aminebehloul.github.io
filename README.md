@@ -18,4 +18,4 @@ This repository hosts the static landing page and verification files for the **W
 For support inquiries or bug reports, please contact us at: **wifidoctor.dev@proton.me**
 
 ---
-*© 2026 Wi-Fi Doctor. All rights reserved.*
+*© 2026 WiFi Doctor. All rights reserved.*
