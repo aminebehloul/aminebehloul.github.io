@@ -5,7 +5,7 @@
 This repository hosts the static landing page and verification files for the **Wi-Fi Doctor** Android application.
 
 ### 🔗 Quick Links
-* **🌐 Live Website:** [https://aminebehloul.github.io/wifi-doctor-site/](https://aminebehloul.github.io/wifi-doctor-site/)
+* **🌐 Live Website:** [https://aminebehloul.github.io/wifi-doctor-site/](https://aminebehloul.github.io/)
 * **📱 Google Play Store:** [Download Wi-Fi Doctor](https://play.google.com/store/apps/details?id=com.aminebehloul.wifidoctor)
 * **📄 Ad Verification:** [app-ads.txt](https://aminebehloul.github.io/app-ads.txt)
 
