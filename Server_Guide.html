@@ -14,6 +14,7 @@
             --code-bg: #263238;
             --code-border: #37474F;
             --accent-green: #00E676;
+            --accent-red: #FF5252;
         }
 
         body {
@@ -185,6 +186,21 @@
             font-family: monospace;
             color: #fff;
         }
+        
+        /* URL Box Style */
+        .url-box {
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: monospace;
+            margin-top: 8px;
+            display: inline-block;
+        }
+        
+        .protocol { color: #FF5252; } /* Red for HTTP emphasis */
+        .port { color: #00E5FF; }
 
         @media (max-width: 600px) {
             .container { padding: 16px; }
@@ -286,8 +302,13 @@ if __name__ == '__main__':
             <div class="step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <strong>Connect App</strong>
-                    <p>Find your computer's IP address (e.g., 192.168.1.15) and enter it into the WiFi Doctor Speed Test screen.</p>
+                    <strong>Enter Server URL</strong>
+                    <p>In the WiFi Doctor app, enter your computer's IP address followed by the port <strong>8000</strong>.</p>
+                    <p style="margin-top:8px; font-size: 0.9rem; color: #B0BEC5;">Use <strong>http</strong> (not https) and format it exactly like this:</p>
+                    
+                    <div class="url-box">
+                        <span class="protocol">http://</span>192.168.1.15<span class="port">:8000</span>
+                    </div>
                 </div>
             </div>
         </div>
