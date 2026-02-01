@@ -245,44 +245,48 @@
                     <button class="copy-btn" onclick="copyCode()">Copy Code</button>
                 </div>
                 <pre><code id="python-code">from http.server import HTTPServer, BaseHTTPRequestHandler
-import time
-
-# 🚀 WiFi Doctor Speed Test Server
-# Run on a PC connected via Ethernet for best results.
-
-HOST_NAME = '0.0.0.0'
-PORT_NUMBER = 8000
+# Save as server.py and run: python server.py
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
 class SpeedTestHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        # DOWNLOAD TEST
+    
+    # 👇 NEW: Handle the "Pre-Flight" check from the app
+    def do_HEAD(self):
         self.send_response(200)
         self.send_header("Content-type", "application/octet-stream")
-        self.send_header("Content-Length", "1000000000") # 1GB Virtual
+        self.send_header("Content-Length", "1000000000")
         self.end_headers()
-        chunk = b'\0' * 65536
+
+    def do_GET(self):
+        # Generate 1GB of dummy data for Download Test
+        self.send_response(200)
+        self.send_header("Content-type", "application/octet-stream")
+        self.send_header("Content-Length", "1000000000")
+        self.end_headers()
+        # Stream zeroes efficiently
+        zeroes = b'\0' * 65536
         try:
-            while True: self.wfile.write(chunk)
-        except: pass
+            while True: 
+                self.wfile.write(zeroes)
+        except: 
+            pass # Client disconnected (test finished)
 
     def do_POST(self):
-        # UPLOAD TEST
+        # Swallow data for Upload Test
         self.send_response(200)
         self.end_headers()
         try:
-            while True:
-                if not self.rfile.read(65536): break
-        except: pass
-    
-    def log_message(self, format, *args): pass
+            while True: # Read until client disconnects
+                chunk = self.rfile.read(65536)
+                if not chunk: break
+        except: 
+            pass
 
-if __name__ == '__main__':
-    httpd = HTTPServer((HOST_NAME, PORT_NUMBER), SpeedTestHandler)
-    print(f"✅ Server Running on port {PORT_NUMBER}")
-    print("👉 Use your PC's IP address in the WiFi Doctor app")
-    try: httpd.serve_forever()
-    except KeyboardInterrupt: pass
-    httpd.server_close()</code></pre>
+# Bind to 0.0.0.0 so it is accessible from other devices on the LAN
+httpd = HTTPServer(('0.0.0.0', 8000), SpeedTestHandler)
+print("✅ Speed Test Server running on port 8000...")
+print("👉 Use this URL in the app: http://<YOUR_PC_IP>:8000")
+httpd.serve_forever()</code></pre>
             </div>
         </div>
 
@@ -347,3 +351,4 @@ if __name__ == '__main__':
 
 </body>
 </html>
+
