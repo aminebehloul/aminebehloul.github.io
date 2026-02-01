@@ -98,16 +98,25 @@
             flex-shrink: 0;
         }
 
-        .step-content strong {
+        /* FIXED: Use a specific class for the title, not generic 'strong' */
+        .step-title {
             display: block;
             margin-bottom: 4px;
             font-size: 1.05rem;
+            font-weight: bold;
+            color: var(--text-primary);
         }
 
         .step-content p {
             margin: 0;
             color: var(--text-secondary);
             font-size: 0.95rem;
+        }
+        
+        /* Ensure bold text inside paragraphs stays inline */
+        .step-content strong {
+            color: #fff;
+            font-weight: bold;
         }
 
         /* CODE BLOCK */
@@ -283,7 +292,7 @@ if __name__ == '__main__':
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <strong>Install Python</strong>
+                    <div class="step-title">Install Python</div>
                     <p>Ensure you have Python 3 installed on your computer. You can check by typing <span class="inline-code">python --version</span> in your terminal.</p>
                 </div>
             </div>
@@ -291,7 +300,7 @@ if __name__ == '__main__':
             <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <strong>Run the Script</strong>
+                    <div class="step-title">Run the Script</div>
                     <p>Open your terminal/command prompt in the folder where you saved the file and run:</p>
                     <div style="margin-top: 8px;">
                         <span class="inline-code">python3 server.py</span>
@@ -302,7 +311,7 @@ if __name__ == '__main__':
             <div class="step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <strong>Enter Server URL</strong>
+                    <div class="step-title">Enter Server URL</div>
                     <p>In the WiFi Doctor app, enter your computer's IP address followed by the port <strong>8000</strong>.</p>
                     <p style="margin-top:8px; font-size: 0.9rem; color: #B0BEC5;">Use <strong>http</strong> (not https) and format it exactly like this:</p>
                     
