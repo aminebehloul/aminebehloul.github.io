@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WiFi Doctor - Local Server Guide</title>
+    <title>WiFi Buddy - Hardware Isolation Guide</title>
     <style>
         :root {
             --bg-color: #121212;
@@ -32,7 +32,6 @@
             padding: 24px;
         }
 
-        /* HEADER */
         header {
             text-align: center;
             padding: 40px 0;
@@ -56,7 +55,6 @@
             font-weight: bold;
         }
 
-        /* CARD */
         .card {
             background-color: var(--surface-color);
             border-radius: 12px;
@@ -73,12 +71,6 @@
             align-items: center;
         }
         
-        h2 svg {
-            margin-right: 10px;
-            fill: var(--primary-color);
-        }
-
-        /* STEPS */
         .step {
             display: flex;
             margin-bottom: 20px;
@@ -98,7 +90,6 @@
             flex-shrink: 0;
         }
 
-        /* Title for step (bold, own line) */
         .step-title {
             display: block;
             margin-bottom: 4px;
@@ -113,7 +104,6 @@
             font-size: 0.95rem;
         }
 
-        /* CODE BLOCK */
         .code-container {
             position: relative;
             background-color: var(--code-bg);
@@ -146,29 +136,12 @@
             transition: all 0.2s;
         }
 
-        .copy-btn:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
+        .copy-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
+        .copy-btn.copied { border-color: var(--accent-green); color: var(--accent-green); }
 
-        .copy-btn.copied {
-            border-color: var(--accent-green);
-            color: var(--accent-green);
-        }
+        pre { margin: 0; padding: 16px; overflow-x: auto; }
+        code { font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; color: #C3E88D; }
 
-        pre {
-            margin: 0;
-            padding: 16px;
-            overflow-x: auto;
-        }
-
-        code {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
-            color: #C3E88D; /* Matrix/Light Green */
-        }
-
-        /* FOOTER / TROUBLESHOOTING */
         .warning-box {
             background-color: rgba(255, 145, 0, 0.1);
             border-left: 4px solid #FF9100;
@@ -176,21 +149,9 @@
             border-radius: 4px;
         }
 
-        .warning-title {
-            color: #FF9100;
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
+        .warning-title { color: #FF9100; font-weight: bold; margin-bottom: 4px; }
+        .inline-code { background: #333; padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #fff; }
         
-        .inline-code {
-            background: #333;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
-            color: #fff;
-        }
-        
-        /* URL Box Style */
         .url-box {
             background: #000;
             border: 1px solid #333;
@@ -202,7 +163,7 @@
             display: inline-block;
         }
         
-        .protocol { color: #FF5252; } /* Red for HTTP emphasis */
+        .protocol { color: #FF5252; } 
         .port { color: #00E5FF; }
 
         @media (max-width: 600px) {
@@ -215,23 +176,20 @@
 
     <div class="container">
         <header>
-            <h1>Local Speed Server</h1>
-            <div class="subtitle">Measure your true <span class="highlight">Wi-Fi Capacity</span></div>
+            <h1>WiFi Throughput Test</h1>
+            <div class="subtitle">Hardware Isolation <span class="highlight">Guide</span></div>
         </header>
 
         <div class="card">
-            <h2>
-                <svg width="24" height="24" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM0 0h24v24H0z" fill="none"/><path d="M12 10l-2-2v1h-4v2h4v1l2-2zm6 4H8v-2h10v2z"/></svg>
-                Why run a local server?
-            </h2>
+            <h2>Why run a local server?</h2>
             <p style="color: var(--text-secondary); margin-bottom: 0;">
-                Traditional speed tests only measure your ISP internet speed. By running this script on your PC, you can test the raw speed between your <strong>Phone</strong> and your <strong>Router</strong> to diagnose Wi-Fi hardware bottlenecks.
+                Traditional tests measure internet plan speed. This <strong>Hardware Isolation Test</strong> bypasses your ISP to measure the physical limit of your Wi-Fi router. It is the only way to verify if your hardware is performing at its limit.
             </p>
         </div>
 
         <div class="card">
             <h2>The Python Script</h2>
-            <p style="color: var(--text-secondary);">Copy this code and save it as <span class="inline-code">server.py</span> on your computer.</p>
+            <p style="color: var(--text-secondary);">Save this code as <span class="inline-code">server.py</span> on your computer.</p>
             
             <div class="code-container">
                 <div class="code-header">
@@ -328,8 +286,8 @@ if __name__ == '__main__':
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <div class="step-title">Install Python</div>
-                    <p>Ensure you have Python 3 installed on your computer. You can check by typing <span class="inline-code">python --version</span> in your terminal.</p>
+                    <div class="step-title">Connect via Wire</div>
+                    <p>Connect this PC directly to your router using an <strong>Ethernet Cable</strong>. If your PC is on Wi-Fi, you will be measuring two wireless links, resulting in slower, inaccurate data.</p>
                 </div>
             </div>
 
@@ -337,20 +295,16 @@ if __name__ == '__main__':
                 <div class="step-number">2</div>
                 <div class="step-content">
                     <div class="step-title">Run the Script</div>
-                    <p>Open your terminal/command prompt in the folder where you saved the file and run:</p>
-                    <div style="margin-top: 8px;">
-                        <span class="inline-code">python3 server.py</span>
-                    </div>
+                    <p>Ensure Python 3 is installed. Open your terminal in the folder where you saved the file and run:</p>
+                    <div style="margin-top: 8px;"><span class="inline-code">python3 server.py</span></div>
                 </div>
             </div>
 
             <div class="step">
                 <div class="step-number">3</div>
-                <div class="step-content">
-                    <div class="step-title">Enter Server URL</div>
-                    <p>In the WiFi Doctor app, use the <strong>IP address displayed by the script</strong>.</p>
-                    <p style="margin-top:8px; font-size: 0.9rem; color: #B0BEC5;">Use <strong>http</strong> (not https) and format it exactly like this:</p>
-                    
+                <div class="step-number" style="display:none">3</div> <div class="step-content">
+                    <div class="step-title">Enter IP Address</div>
+                    <p>In the app, enter the <strong>IP address displayed by the script</strong> into the "PC IP Address" box and tap <strong>Run Throughput Test</strong>.</p>
                     <div class="url-box">
                         <span class="protocol">http://</span>192.168.1.15<span class="port">:8000</span>
                     </div>
@@ -361,7 +315,7 @@ if __name__ == '__main__':
         <div class="warning-box">
             <div class="warning-title">⚠️ Troubleshooting</div>
             <div style="color: #FFB74D; font-size: 0.9rem;">
-                If the connection times out, your computer's <strong>Firewall</strong> is likely blocking Port 8000. Please allow Python through your firewall or temporarily disable it for the test.
+                <strong>Firewall:</strong> If the connection times out, your computer's <strong>Firewall</strong> is likely blocking Port 8000. Please allow Python through your firewall or temporarily disable it for the test.
             </div>
         </div>
     </div>
@@ -380,7 +334,5 @@ if __name__ == '__main__':
             });
         }
     </script>
-
 </body>
 </html>
-
